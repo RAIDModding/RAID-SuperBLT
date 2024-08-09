@@ -45,7 +45,7 @@ doing anything. This allows the loader to adjust the memory of the PAYDAY 2 exec
 First, clone this repository and pull all required projects and repositories into one folder (Note: You **NEED** to do this, otherwise you'll get runtime and compile errors):
 
 ```
-git clone --recursive [https://github.com/RAIDModding/RAID-SuperBLT.git]
+git clone --recursive https://github.com/RAIDModding/RAID-SuperBLT.git
 ```
 
 Second, create and `cd` into a build directory:
