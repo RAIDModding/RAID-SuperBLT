@@ -45,7 +45,7 @@ doing anything. This allows the loader to adjust the memory of the PAYDAY 2 exec
 First, clone this repository and pull all required projects and repositories into one folder (Note: You **NEED** to do this, otherwise you'll get runtime and compile errors):
 
 ```
-git clone --recursive https://gitlab.com/znixian/payday2-superblt.git
+git clone --recursive [https://github.com/RAIDModding/RAID-SuperBLT.git]
 ```
 
 Second, create and `cd` into a build directory:
@@ -95,7 +95,7 @@ env LD_PRELOAD="$LD_PRELOAD ./libsuperblt_loader.so" %command%
 
 This environment variable will tell the game to look for the SuperBLT loader in PAYDAY 2's root directory when you run the game.
 
-Be sure to install the base mod from [GitHub: RAIDModding/RAID-SuperBLT-Lua]([https://gitlab.com/znixian/payday2-superblt-lua](https://github.com/RAIDModding/RAID-SuperBLT-Lua)),
+Be sure to install the base mod from [GitHub: RAIDModding/RAID-SuperBLT-Lua](https://github.com/RAIDModding/RAID-SuperBLT-Lua),
 as the automatic installer isn't currently implemented on GNU+Linux.
 
 ### Windows
@@ -103,7 +103,7 @@ as the automatic installer isn't currently implemented on GNU+Linux.
 First, clone this repository and pull all required projects and repositories into one folder (Note: You **NEED** to do this, otherwise you'll get runtime and compile errors):
 
 ```
-git clone --recursive https://gitlab.com/znixian/payday2-superblt.git
+git clone --recursive https://github.com/RAIDModding/RAID-SuperBLT.git
 ```
 
 Next open it in your IDE of choice. In CLion, select `File -> Open` and the folder created
