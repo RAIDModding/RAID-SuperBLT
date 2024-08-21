@@ -37,67 +37,6 @@ It also has libraries that are very small projects, rarely available in package 
 and that are included as git submodules. CMake automatically adds these targets,
 so you don't need to make any special efforts to use them.
 
-### GNU+Linux
-
-If you are using SELinux, you may require running either `sudo setsebool -P selinuxuser_execheap 1` or `sudo setenforce 0` before
-doing anything. This allows the loader to adjust the memory of the PAYDAY 2 executable.
-
-First, clone this repository and pull all required projects and repositories into one folder (Note: You **NEED** to do this, otherwise you'll get runtime and compile errors):
-
-```
-git clone --recursive https://github.com/RAIDModding/RAID-SuperBLT.git
-```
-
-Second, create and `cd` into a build directory:
-
-```
-mkdir build
-cd build
-```
-
-Then run CMake:
-
-```
-cmake ..
-```
-
-Alternatively, if you want to debug symbols for GDB, add it as an argument:
-
-```
-cmake .. -DCMAKE_BUILD_TYPE=RelWithDebInfo
-```
-
-If the previous step told you that you're missing some libraries (which is quite likely), install them, and be
-sure to install their development headers too. This can be done via your package manager.
-
-These packages are normally not installed by default, such as: `openssl`, `libssl1.1`, `libcurl4-openssl-dev`, `libssh2-1-dev`, `libpng-dev`, `zlib-dev` (often called `zlib1g-dev` in debian distro's), and `libopenal-dev`. This is distribution and OS-dependant (these packages are named differently on arch-based systems, for example), and may require installing the non-dev-header packages too (`libpng-dev` and `libpng` for example). On Debian Distro, the command to install all these dependencies looks like:
-
-```
-sudo apt-get install openssl libssl1.1 libssl-dev libcurl4 libcurl4-openssl-dev libopenal1 libopenal-data libopenal-dev zlib1g zlib1g-dev libpng-dev libssh2-1 libssh2-1-dev
-```
-
-Next, compile the loader. You can speed up the compilation process by replacing the number
-"4" with the number of threads your CPU has (generally, it's twice the core count, so
-for example: 2 cores will have 4 threads, 4 cores will have 8 threads, and so on):
-
-```
-make -j 4
-```
-
-Go into the build folder and copy the resulting `libsuperblt_loader.so` into the root directory
-of PAYDAY 2's install folder (the same folder as the binary executable; `payday2_release`).
-
-And finally, add the `LD_PRELOAD` environment variable to Steams' Launch Options:
-
-```
-env LD_PRELOAD="$LD_PRELOAD ./libsuperblt_loader.so" %command%
-```
-
-This environment variable will tell the game to look for the SuperBLT loader in PAYDAY 2's root directory when you run the game.
-
-Be sure to install the base mod from [GitHub: RAIDModding/RAID-SuperBLT-Lua](https://github.com/RAIDModding/RAID-SuperBLT-Lua),
-as the automatic installer isn't currently implemented on GNU+Linux.
-
 ### Windows
 
 First, clone this repository and pull all required projects and repositories into one folder (Note: You **NEED** to do this, otherwise you'll get runtime and compile errors):
