@@ -20,15 +20,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: true
-
-    - name: "Configure choco cache"
-      run: choco config set cacheLocation ./.choco-cache
-
-    - uses: actions/cache@v4
-      with:
-        path: ./.choco-cache
-        key: choco-cache
-
+  
     - name: Install Python3 and CMake
       run: |
         choco install -y python3
