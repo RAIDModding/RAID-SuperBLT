@@ -1,0 +1,2 @@
+3. fix issue with IPHLPAPI.dll breaking updater, no clue how?!
+7. try to deduplicate compress.cpp/ figure out linking in util.h without all the lua.h/platform.h depencies

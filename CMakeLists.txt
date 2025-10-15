@@ -144,7 +144,7 @@ set(CURL_USE_SCHANNEL ON)
 # Turn off all the crap we don't want
 set(CURL_DISABLE_INSTALL ON)
 set(HTTP_ONLY ON) # disable all protocols, but http(s) and ws(s)
-set(ENABLE_UNIX_SOCKETS OFF) # disable unit-socket support [ http(s):// ]
+set(ENABLE_UNIX_SOCKETS OFF) # disable unix-socket support [ http(s):// ]
 set(CURL_DISABLE_NEGOTIATE_AUTH ON) # included in SSPI
 set(CURL_DISABLE_KERBEROS_AUTH ON) # included in SSPI
 set(CURL_DISABLE_NTLM ON) # included in SSPI
@@ -184,3 +184,11 @@ set_property(SOURCE loader/loader.asm PROPERTY LANGUAGE ASM_MASM)
 target_compile_options(IPHLPAPI PRIVATE -DBLT_USE_IPHLPAPI)
 target_compile_options(WSOCK32 PRIVATE -DBLT_USE_WSOCK)
 
+###############################################################################
+## build external updater for dll                                            ##
+###############################################################################
+add_executable(SBLT_DLL_UPDATER updater/updater.cpp updater/compression.cpp)
+target_link_libraries(SBLT_DLL_UPDATER ws2_32.lib)
+target_link_libraries(SBLT_DLL_UPDATER zlib)
+target_link_libraries(SBLT_DLL_UPDATER libcurl_static)
+target_include_directories(SBLT_DLL_UPDATER PRIVATE updater)

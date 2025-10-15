@@ -50,8 +50,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,1,0
- PRODUCTVERSION 1,0,1,0
+ FILEVERSION 1,0,0,0
+ PRODUCTVERSION 1,0,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -68,12 +68,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "RAID-SuperBLT"
             VALUE "FileDescription", "RAID-SuperBLT"
-            VALUE "FileVersion", "1.0.1.0"
+            VALUE "FileVersion", "1.0.0.0"
             VALUE "InternalName", "RAID-SuperBLT.dll"
             VALUE "LegalCopyright", "Copyright (C) 2025"
             VALUE "OriginalFilename", "RAID-SuperBLT.dll"
             VALUE "ProductName", "RAID-SuperBLT"
-            VALUE "ProductVersion", "1.0.1.0"
+            VALUE "ProductVersion", "1.0.0.0"
         END
     END
     BLOCK "VarFileInfo"
