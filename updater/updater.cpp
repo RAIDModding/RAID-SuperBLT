@@ -286,7 +286,7 @@ int main(int argc, char *argv[])
 
 		// DLL: move old dll
 
-		if (MoveFileEx(DLL.c_str(), DLL_old.c_str(), MOVEFILE_REPLACE_EXISTING OR MOVEFILE_WRITE_THROUGH) != 0)
+		if (MoveFileEx(DLL.c_str(), DLL_old.c_str(), MOVEFILE_REPLACE_EXISTING or MOVEFILE_WRITE_THROUGH) != 0)
 		{
 			printf("%s\n", GetLastError());
 			MessageBox(0, "An error occured.", "SBLT DLL Downloader", MB_OK);
