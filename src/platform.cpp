@@ -59,14 +59,16 @@ void blt::platform::InitPlatform()
 
 	// run external dll updater
 	// needs to be external because we are still in LoaderLock which blocks network I/O
-	if (std::filesystem::exists("SBLT_DLL_UPDATER.exe"))
+	if (std::filesystem::exists("updater/SBLT_DLL_UPDATER.exe"))
 	{
-		int ret = system(std::format("updater/SBLT_DLL_UPDATER.exe {}", raidhook::Util::GetDllVersion()).c_str());
+		SetCurrentDirectory("updater");
+		int ret = system(std::format("SBLT_DLL_UPDATER.exe {}", raidhook::Util::GetDllVersion()).c_str());
 		if (ret == 1)
 		{
 			// user has updated dll -> exit game to restart
 			exit(0);
 		}
+		SetCurrentDirectory("..");
 	}
 
 	if (!SignatureSearch::Search())

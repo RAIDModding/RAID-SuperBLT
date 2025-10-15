@@ -74,10 +74,6 @@ int main(int argc, char *argv[])
 	{
 		DLL = "../IPHLPAPI.dll";
 		DLL_old = "../IPHLPAPI.dll.old";
-
-		// FIXME: IPHLPAPI.dll in same directory as SBLT_DLL_UPDATER breaks it
-		MessageBox(NULL, "Updating IPHLPAPI.dll is currently not supported.", "SBLT DLL Downloader", MB_OK);
-        return 2;
 	}
 	if (infile_wsock32.good())
 	{
