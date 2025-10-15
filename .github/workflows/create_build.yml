@@ -4,9 +4,13 @@ on:
   push:
     paths:
       - src/**
+      - loader/**
+      - updater/**
   pull_request:
     paths:
       - src/**
+      - loader/**
+      - updater/**
 
 env:
   BUILD_TYPE: Release
@@ -58,3 +62,4 @@ jobs:
         path: |
           build/Release/IPHLPAPI.dll
           build/Release/WSOCK32.dll
+          build/Release/SBLT_DLL_UPDATER.exe
