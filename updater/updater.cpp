@@ -285,13 +285,10 @@ int main(int argc, char *argv[])
 		}
 
 		// DLL: move old dll
-		try 
+
+		if (MoveFileEx(DLL.c_str(), DLL_old.c_str(), MOVEFILE_REPLACE_EXISTING OR MOVEFILE_WRITE_THROUGH) != 0)
 		{
-			std::filesystem::rename(DLL.c_str(), DLL_old.c_str());
-		}
-		catch (std::filesystem::filesystem_error& e)
-		{
-			printf("%s\n", e.what());
+			printf("%s\n", GetLastError());
 			MessageBox(0, "An error occured.", "SBLT DLL Downloader", MB_OK);
 			return 2;
 		}
