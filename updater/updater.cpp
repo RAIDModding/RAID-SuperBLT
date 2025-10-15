@@ -288,7 +288,7 @@ int main(int argc, char *argv[])
 
 		if (MoveFileEx(DLL.c_str(), DLL_old.c_str(), MOVEFILE_REPLACE_EXISTING or MOVEFILE_WRITE_THROUGH) == 0)
 		{
-			printf("%s\n", GetLastError());
+			printf("%d\n", GetLastError());
 			MessageBox(0, "An error occured.", "SBLT DLL Downloader", MB_OK);
 			return 2;
 		}
