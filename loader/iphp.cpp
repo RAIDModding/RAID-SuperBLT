@@ -5,7 +5,6 @@
 #include "util/util.h"
 #include <filesystem>
 #include <windows.h>
-#include <tchar.h>
 
 #include <memory>
 
@@ -326,25 +325,7 @@ BOOL WINAPI DllMain(HINSTANCE hInst, DWORD reason, LPVOID)
 	static HINSTANCE hLDebugger = 0;
 
 	if (reason == DLL_PROCESS_ATTACH)
-	{
-		// only load SBLT for raid
-		// accomodate SBLT_DLL_UPDATER and possibily other executables users placed next to the games executable
-		TCHAR raid_exe[] = _T("raid_win64_release");
-		TCHAR processPath[MAX_PATH + 1];
-		GetModuleFileName(NULL, processPath, MAX_PATH + 1); // Get the path
-		TCHAR filename[MAX_PATH + 1];
-		_splitpath_s( // Find the filename part of the path
-			processPath, // Input
-			NULL, 0, // Don't care about the drive letter
-			NULL, 0, // Don't care about the directory
-			filename, MAX_PATH, // Grab the filename
-			NULL, 0 // Extension is always .exe
-		);
-		if (_tcscmp(filename, raid_exe) != 0)
-		{
-			return true;
-		}
-		
+	{		
 		char bufd[200];
 		GetSystemDirectory(bufd, 200);
 		strcat_s(bufd, "\\IPHLPAPI.dll");

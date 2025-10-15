@@ -56,9 +56,9 @@ int main(int argc, char *argv[])
 	// check which dll is used
 	std::string DLL = "";
 	std::string DLL_old = "";
-	std::ifstream infile_iphlpapi("IPHLPAPI.dll");
-	std::ifstream infile_wsock32("WSOCK32.dll");
-	std::ifstream infile_debug_updater("mods/debug_updater.txt");
+	std::ifstream infile_iphlpapi("../IPHLPAPI.dll");
+	std::ifstream infile_wsock32("../WSOCK32.dll");
+	std::ifstream infile_debug_updater("../mods/debug_updater.txt");
 	std::ostringstream datastream;
 	std::ostringstream selfupdate_rver;
     std::string URL;
@@ -72,8 +72,8 @@ int main(int argc, char *argv[])
 
 	if (infile_iphlpapi.good())
 	{
-		DLL = "IPHLPAPI.dll";
-		DLL_old = "IPHLPAPI.dll.old";
+		DLL = "../IPHLPAPI.dll";
+		DLL_old = "../IPHLPAPI.dll.old";
 
 		// FIXME: IPHLPAPI.dll in same directory as SBLT_DLL_UPDATER breaks it
 		MessageBox(NULL, "Updating IPHLPAPI.dll is currently not supported.", "SBLT DLL Downloader", MB_OK);
@@ -81,8 +81,8 @@ int main(int argc, char *argv[])
 	}
 	if (infile_wsock32.good())
 	{
-		DLL = "WSOCK32.dll";
-		DLL_old = "WSOCK32.dll.old";
+		DLL = "../WSOCK32.dll";
+		DLL_old = "../WSOCK32.dll.old";
 	}
 
 	if (DLL == "")
@@ -180,7 +180,7 @@ int main(int argc, char *argv[])
 	// DLL: check for updates
 	// DLL: get remote version
 
-	if (DLL == "IPHLPAPI.dll")
+	if (DLL == "../IPHLPAPI.dll")
 	{
 		curl_easy_setopt(curl, CURLOPT_URL, VERSION_URL_DLL_IPHLPAPI);
 	}
@@ -253,7 +253,7 @@ int main(int argc, char *argv[])
 			curl_easy_cleanup(curl);
 			return 0;
 		}
-		if (DLL == "IPHLPAPI.dll")
+		if (DLL == "../IPHLPAPI.dll")
 		{
 			curl_easy_setopt(curl, CURLOPT_URL, DOWNLOAD_URL_DLL_IPHLPAPI);
             URL = DOWNLOAD_URL_DLL_IPHLPAPI;
@@ -301,7 +301,7 @@ int main(int argc, char *argv[])
 		}
 
 		// DLL: unpack new dll
-		raidhook::ExtractZIPArchive(DLL_UPDATE_FILE, ".");
+		raidhook::ExtractZIPArchive(DLL_UPDATE_FILE, "..");
 		// DLL: clean up
 		std::filesystem::remove(DLL_UPDATE_FILE);
 		curl_easy_cleanup(curl);
