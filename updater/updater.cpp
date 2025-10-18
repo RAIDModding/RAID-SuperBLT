@@ -122,8 +122,8 @@ int main(int argc, char *argv[])
 
 	// SELF: compare versions
 	bool self_update = false;
-
-	if ( UPDATER_VERSION < selfupdate_remote_version)
+	// TODO: add debug
+	if (UPDATER_VERSION < selfupdate_remote_version)
 	{
 		// ask user to update dll updater
 		int self_result = MessageBox(NULL, "Do you want to update the RAID SuperBLT DLL Updater?\nThis is recommended.", "SuperBLT DLL Updater out of date", MB_YESNO);
@@ -284,17 +284,8 @@ int main(int argc, char *argv[])
 			return 2;
 		}
 
-		// DLL: move old dll
-
-		if (MoveFileEx(DLL.c_str(), DLL_old.c_str(), MOVEFILE_REPLACE_EXISTING or MOVEFILE_WRITE_THROUGH) == 0)
-		{
-			printf("%d\n", GetLastError());
-			MessageBox(0, "An error occured.", "SBLT DLL Downloader", MB_OK);
-			return 2;
-		}
-
 		// DLL: unpack new dll
-		raidhook::ExtractZIPArchive(DLL_UPDATE_FILE, "..");
+		raidhook::ExtractZIPArchive(DLL_UPDATE_FILE, ".");
 		// DLL: clean up
 		std::filesystem::remove(DLL_UPDATE_FILE);
 		curl_easy_cleanup(curl);
