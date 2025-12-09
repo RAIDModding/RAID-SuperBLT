@@ -1,2 +1,2 @@
 try to deduplicate compress.cpp/ figure out linking in util.h without all the lua.h/platform.h depencies
-Resource.rc
+clean up and review
