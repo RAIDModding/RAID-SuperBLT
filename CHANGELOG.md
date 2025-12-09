@@ -4,6 +4,11 @@ This lists the changes between different versions of the SuperBLT DLL,
 the changes for the basemod are listed in their own changelog.
 Contributors other than maintainers are listed in parenthesis after specific changes.
 
+## Version 1.1.0.0
+
+updated curl, wren and zlib-ng
+added external updater for dll
+
 ## Version 1.0.1.0
 
 blt.asset_db rewrite for RAID
