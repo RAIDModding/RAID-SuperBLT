@@ -43,6 +43,7 @@ int main(int argc, char *argv[])
         0: no update found/done
         1: update successful
         2: error while updating
+		3: self update of updater
     */
     if (argc < 2)
     {
@@ -122,8 +123,7 @@ int main(int argc, char *argv[])
 
 	// SELF: compare versions
 	bool self_update = false;
-	// TODO: add debug
-	if (UPDATER_VERSION < selfupdate_remote_version)
+	if (UPDATER_VERSION < selfupdate_remote_version or infile_debug_updater.good())
 	{
 		// ask user to update dll updater
 		int self_result = MessageBox(NULL, "Do you want to update the RAID SuperBLT DLL Updater?\nThis is recommended.", "SuperBLT DLL Updater out of date", MB_YESNO);
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
 
 		// DLL: tell user to restart game
 		MessageBox(0, "SuperBLT DLL Updater was updated successfully.\nPlease restart your game.", "SuperBLT DLL Updater", MB_OK);
-		return 1;
+		return 3;
 
 	}
 

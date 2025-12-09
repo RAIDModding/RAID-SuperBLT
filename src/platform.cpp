@@ -11,6 +11,9 @@
 #include <format>
 #include <filesystem>
 
+#define WIN32_LEAN_AND_MEAN 1
+#include <Windows.h>
+
 using namespace std;
 using namespace raidhook;
 
@@ -64,31 +67,35 @@ void blt::platform::InitPlatform()
 		SetCurrentDirectory("updater");
 		int ret = system(std::format("SBLT_DLL_UPDATER.exe {}", raidhook::Util::GetDllVersion()).c_str());
 		SetCurrentDirectory("..");
-		if (ret == 1)
+		if (ret == 1) // updater downloaded new dll version
 		{
 			if (std::filesystem::exists("IPHLPAPI.dll") and !std::filesystem::exists("WSOCK32.dll"))
 			{
-				if (MoveFileEx("IPHLPAPI.dll", "IPHLPAPI.dll.old") == 0)
+				if (MoveFileEx("IPHLPAPI.dll", "IPHLPAPI.dll.old", MOVEFILE_REPLACE_EXISTING) == 0)
 				{
 					MessageBox(0, std::format("{}", GetLastError()).c_str(), "SBLT DLL Downloader", MB_OK);
 				}
-				if (MoveFileEx("updater/IPHLPAPI.dll", "IPHLPAPI.dll") == 0)
+				if (MoveFileEx("updater/IPHLPAPI.dll", "IPHLPAPI.dll", MOVEFILE_REPLACE_EXISTING) == 0)
 				{
 					MessageBox(0, std::format("{}", GetLastError()).c_str(), "SBLT DLL Downloader", MB_OK);
 				}
 			}
 			if (std::filesystem::exists("WSOCK32.dll") and !std::filesystem::exists("IPHLPAPI.dll"))
 			{
-				if (MoveFileEx("WSOCK32.dll", "WSOCK32.dll.old") == 0)
+				if (MoveFileEx("WSOCK32.dll", "WSOCK32.dll.old", MOVEFILE_REPLACE_EXISTING) == 0)
 				{
 					MessageBox(0, std::format("{}", GetLastError()).c_str(), "SBLT DLL Downloader", MB_OK);
 				}
-				if (MoveFileEx("updater/WSOCK32.dll", "WSOCK32.dll") == 0)
+				if (MoveFileEx("updater/WSOCK32.dll", "WSOCK32.dll", MOVEFILE_REPLACE_EXISTING) == 0)
 				{
 					MessageBox(0, std::format("{}", GetLastError()).c_str(), "SBLT DLL Downloader", MB_OK);
 				}
 			}
 			
+			exit(0);
+		}
+		if (ret == 3) // updater self updated
+		{
 			exit(0);
 		}
 	}
