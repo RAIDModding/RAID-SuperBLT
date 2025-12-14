@@ -119,15 +119,15 @@ set(ZLIB_BUILD_SHARED OFF CACHE BOOL "" FORCE)
 
 add_subdirectory(lib/sys/zlib EXCLUDE_FROM_ALL)
 
-target_include_directories(zlib PUBLIC
+target_include_directories(zlibstatic PUBLIC
     $<BUILD_INTERFACE:${zlib_SOURCE_DIR}>
     $<BUILD_INTERFACE:${zlib_BINARY_DIR}>
 )
 
 # Link to the expected CURL-compatible zlib target
-set(ZLIB_LIBRARY zlib)
+set(ZLIB_LIBRARY zlibstatic)
 set(ZLIB_INCLUDE_DIR ${zlib_SOURCE_DIR})
-target_link_libraries(SuperBLT zlib)
+target_link_libraries(SuperBLT zlibstatic)
 
 # Sanity check
 get_target_property(_zlib_inc zlib INTERFACE_INCLUDE_DIRECTORIES)
@@ -189,6 +189,6 @@ target_compile_options(WSOCK32 PRIVATE -DBLT_USE_WSOCK)
 ###############################################################################
 add_executable(SBLT_DLL_UPDATER updater/updater.cpp updater/compression.cpp updater/Resource.rc)
 target_link_libraries(SBLT_DLL_UPDATER ws2_32.lib)
-target_link_libraries(SBLT_DLL_UPDATER zlib)
+target_link_libraries(SBLT_DLL_UPDATER zlibstatic)
 target_link_libraries(SBLT_DLL_UPDATER libcurl_static)
 target_include_directories(SBLT_DLL_UPDATER PRIVATE updater)
