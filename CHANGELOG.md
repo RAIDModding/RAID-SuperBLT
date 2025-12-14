@@ -4,6 +4,9 @@ This lists the changes between different versions of the SuperBLT DLL,
 the changes for the basemod are listed in their own changelog.
 Contributors other than maintainers are listed in parenthesis after specific changes.
 
+## Version 1.1.0.1
+hotfix for zlib-ng v2.3.x breaking builds
+
 ## Version 1.1.0.0
 
 updated curl, wren and zlib-ng
